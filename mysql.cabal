@@ -24,7 +24,7 @@ category:       Database
 build-type:     Custom
 cabal-version:  >= 1.8
 extra-source-files:
-    include/mysql_signals.h
+    -- include/mysql_signals.h
     ChangeLog.md
     README.markdown
 
@@ -38,7 +38,7 @@ flag developer
   manual: True
 
 library
-  c-sources: cbits/mysql_signals.c
+  -- c-sources: cbits/mysql_signals.c
 
   include-dirs: include
 
@@ -62,6 +62,7 @@ library
     ghc-prof-options: -auto-all
     ghc-options: -Werror
     cpp-options: -DASSERTS
+  extra-libraries: mariadb
 
 test-suite test
     type:            exitcode-stdio-1.0

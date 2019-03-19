@@ -45,7 +45,8 @@ module Database.MySQL.Base.Types
     , toConnectFlag
     ) where
 
-#include "mysql.h"
+#include <winsock.h>
+#include <mysql.h>
 
 import Control.Applicative ((<$>), (<*>), pure)
 import Data.Bits ((.|.), (.&.))

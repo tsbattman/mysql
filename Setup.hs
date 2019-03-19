@@ -29,16 +29,17 @@ instance ConstOrId a (b -> a) where
     constOrId = const
 
 
-main = defaultMainWithHooks simpleUserHooks {
-  hookedPrograms = [mysqlConfigProgram],
-
-  confHook = \pkg flags -> do
-    lbi <- confHook simpleUserHooks pkg flags
-    bi  <- mysqlBuildInfo lbi
-    return lbi {
-      localPkgDescr = updatePackageDescription (Just bi, []) (localPkgDescr lbi)
-    }
-}
+main = defaultMain
+-- defaultMainWithHooks simpleUserHooks {
+--   hookedPrograms = [mysqlConfigProgram],
+-- 
+--   confHook = \pkg flags -> do
+--     lbi <- confHook simpleUserHooks pkg flags
+--     bi  <- mysqlBuildInfo lbi
+--     return lbi {
+--       localPkgDescr = updatePackageDescription (Just bi, []) (localPkgDescr lbi)
+--     }
+-- }
 
 mysqlConfigProgram = (simpleProgram "mysql_config") {
     programFindLocation = \verbosity -> constOrId $ liftM msum $ sequence
